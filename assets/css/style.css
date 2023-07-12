@@ -1,0 +1,18 @@
+
+:root {
+    --poppy: #d64045ff;
+    --mint-green: #e9fff9ff;
+    --non-photo-blue: #9ed8dbff;
+    --ucla-blue: #467599ff;
+    --delft-blue: #1d3354ff;
+    --onyx: #403f4cff;
+    --red-crayola: #e84855ff;
+    --naples-yellow: #f9dc5cff;
+    --azure: #3185fcff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
