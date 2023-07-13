@@ -1,3 +1,16 @@
+const start_modal = document.getElementById("modal");
+const start_btn = document.getElementById("start");
+start_btn.addEventListener("click",startGame);
+let player_x_name;
+let player_o_name;
+
+function startGame(){
+	player_x_name = document.getElementById("player_x").value;
+	player_o_name = document.getElementById("player_o").value;
+	start_modal.classList.add("hidden");
+}
+
+
 const all_squares = document.getElementsByClassName("square");
 let current_player_symbol = "X";
 let is_end = false;

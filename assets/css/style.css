@@ -187,6 +187,10 @@ body {
     z-index: 5;
 }
 
+.hidden {
+    display: none;
+}
+
 .card-container {
     display: flex;
     flex-flow: column nowrap;
