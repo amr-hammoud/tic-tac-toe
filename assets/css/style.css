@@ -98,6 +98,21 @@ a {
 
 body {
     background-color: var(--mint-green);
+    font-family: "Mali", cursive;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 65px;
+    color: var(--onyx);
 }
 
 .game-container {
