@@ -1,7 +1,7 @@
 
 const all_squares = document.getElementsByClassName('square');
-let is_player1_turn = true;
-
+let current_player_symbol = "X";
+let is_end = false;
 
 for (let i = 0; i < all_squares.length; i++) {
     all_squares[i].addEventListener('click',handleClickEvent)
@@ -9,12 +9,15 @@ for (let i = 0; i < all_squares.length; i++) {
 
 function handleClickEvent(e) {
     const square = e.target;
-    if(is_player1_turn){
-        square.innerText = "X"
-        is_player1_turn = false
-    }else{
-        square.innerText = "O"
-        is_player1_turn = true
+    if(!is_end && square.innerText === ""){
+        square.innerText = current_player_symbol;
+        changeTurn();
     }
-    
+}
+
+function changeTurn(){
+    if(current_player_symbol === "X")
+        current_player_symbol = "O"
+    else
+        current_player_symbol = "X"
 }
