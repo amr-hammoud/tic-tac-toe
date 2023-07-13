@@ -132,8 +132,14 @@ body {
 
 .x {
     color: var(--poppy);
+    opacity: 0.8;
 }
 
 .o {
     color: var(--azure);
+    opacity: 0.8;
+}
+
+.win {
+    background-color: var(--naples-yellow);
 }
