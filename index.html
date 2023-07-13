@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="modal" id="modal">
+    <div class="modal hidden" id="modal">
         <div class="card-container">
             <div class="info-container">
                 <img src="assets/images/favicon.png" class="logo" alt="logo">
@@ -23,21 +23,24 @@
             </div>
             <div class="input-container">
                 <label for="">Player X Name <span class="error-text hidden" id="player_x_error">*required</span></label>
-                <input type="text" class="input" id="player_x" name="player_x" placeholder="Player X">
+                <input type="text" class="input" id="player_x" name="player_x" placeholder="Player X" value="Player X">
             </div>
             <div class="input-container">
                 <label for="">Player O Name <span class="error-text hidden" id="player_o_error">*required</span></label>
-                <input type="text" class="input" id="player_o" name="player_o" placeholder="Player O">
+                <input type="text" class="input" id="player_o" name="player_o" placeholder="Player O" value="Player O">
             </div>
             <div class="input-container">
                 <button type="button" class="start-button" id="start">Start Game</button>
             </div>
         </div>
     </div>
-    <div class="header">
-        <h1 class="game-title">Tic Tac Toe</h1>
-    </div>
+    
     <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title">Tic Tac Toe</h1>
+            <div class="score" id="player_x_score">Score X:</div>
+            <div class="score" id="player_o_score">Score O:</div>
+        </div>
         <div class="game-grid">
             <div class="square" id="1"></div>
             <div class="square" id="2"></div>

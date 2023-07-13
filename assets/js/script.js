@@ -1,8 +1,16 @@
 const start_modal = document.getElementById("modal");
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click",startGame);
+
 let player_x_name;
 let player_o_name;
+
+let player_x_score = document.getElementById("player_x_score");
+let player_o_score = document.getElementById("player_o_score");
+let score_x_value = 0;
+let score_o_value = 0;
+
+
 
 function startGame(){
 	let player_x_input = document.getElementById("player_x");
@@ -30,9 +38,15 @@ function startGame(){
 		player_o_input.classList.remove("error");
 	}
 	if(player_x_name !== "" && player_o_name !== ""){
-		start_modal.classList.add("hidden");
+		setupGame()
 	}
 
+}
+
+function setupGame(){
+	start_modal.classList.add("hidden");
+	player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
+	player_o_score.innerText = `${player_o_name} (O): ${score_o_value} points`;
 }
 
 const all_squares = document.getElementsByClassName("square");
