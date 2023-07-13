@@ -91,3 +91,30 @@ a {
         scroll-behavior: auto;
     }
 }
+
+
+
+/* GAME GRID STYLE */
+
+body {
+    background-color: var(--mint-green);
+}
+
+.game-grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.5rem;
+    width: 400px;
+}
+
+.square {
+    background-color: var(--onyx);
+    aspect-ratio: 1;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
