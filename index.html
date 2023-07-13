@@ -14,8 +14,28 @@
 </head>
 
 <body>
+    <div class="modal">
+        <div class="card-container">
+            <div class="info-container">
+                <img src="assets/images/favicon.png" class="logo" alt="logo">
+                <div class="main-title">Tic Tac Toe</div>
+                <p class="welcome-text">Please enter players names and press start</p>
+            </div>
+            <div class="input-container">
+                <label for="">Player X Name</label>
+                <input type="text" class="input" id="player_x" name="player_x" placeholder="Player X">
+            </div>
+            <div class="input-container">
+                <label for="">Player O Name</label>
+                <input type="text" class="input" id="player_o" name="player_o" placeholder="Player O">
+            </div>
+            <div class="input-container">
+                <button type="button" class="start-button" id="start">Start Game</button>
+            </div>
+        </div>
+    </div>
     <div class="header">
-        <h1 class="title">Tic Tac Toe</h1>
+        <h1 class="game-title">Tic Tac Toe</h1>
     </div>
     <div class="game-container">
         <div class="game-grid">

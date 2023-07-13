@@ -109,7 +109,7 @@ body {
     justify-content: center;
 }
 
-.title {
+.game-title {
     text-align: center;
     font-size: 65px;
     color: var(--onyx);
@@ -172,5 +172,71 @@ body {
     background-color: var(--onyx);
     margin-top: 30px;
     width: 200px;
+    border-radius: 10px;
+}
 
+.modal {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+    background-color: var(--onyx);
+    color: var(--mint-green);
+    z-index: 5;
+}
+
+.card-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.info-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.logo {
+    max-width: 200px;
+    
+}
+
+.main-title {
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+}
+
+input {
+    display: block;
+    margin: 5px 0 20px 0;
+    padding: 10px;
+    height: 80px;
+    aspect-ratio: 12/3;
+    font-size: 24px;
+    color: var(--onyx);
+    background-color: var(--mint-green);
+    border-radius: 10px;
+}
+
+input::placeholder {
+    font-size: 24px;
+}
+
+.start-button {
+    font-family: "Mali";
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--onyx);
+    background-color: var(--mint-green);
+    border-radius: 10px;
+    padding: 20px;
 }
