@@ -100,14 +100,19 @@ body {
     background-color: var(--mint-green);
 }
 
+.game-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .game-grid {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: 0.5rem;
+    gap: 10px;
+    max-width: 420px;
 }
 
 .square {
@@ -142,4 +147,15 @@ body {
 
 .win {
     background-color: var(--naples-yellow);
+}
+
+.reset {
+    font-family: "Mali";
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--mint-green);
+    background-color: var(--onyx);
+    margin-top: 30px;
+    width: 200px;
+
 }
