@@ -11,6 +11,7 @@ function handleClickEvent(e) {
     const square = e.target;
     if(!is_end && square.innerText === ""){
         square.innerText = current_player_symbol;
+        addColor(square);
         changeTurn();
     }
 }
@@ -21,3 +22,10 @@ function changeTurn(){
     else
         current_player_symbol = "X"
 }
+
+function addColor(square){
+    if(current_player_symbol === "X")
+        square.classList.add("x")
+    else
+        square.classList.add("o")
+}   
