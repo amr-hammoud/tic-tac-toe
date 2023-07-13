@@ -22,7 +22,7 @@ function handleClickEvent(e) {
 	if (!is_end && square.innerText === "") {
 		square.innerText = current_player_symbol;
 		addColor(square);
-        checkWinner();
+		checkWinner();
 		changeTurn();
 	}
 }
@@ -38,19 +38,31 @@ function addColor(square) {
 }
 
 function checkWinner() {
-    for (let i = 0; i < possible_wins.length; i++) {
-        let box1 =  document.getElementById(possible_wins[i][0]);
-        let box2 =  document.getElementById(possible_wins[i][1]);
-        let box3 =  document.getElementById(possible_wins[i][2]);
-        if (
-            box1.innerText === current_player_symbol &&
-            box2.innerText === current_player_symbol &&
-            box3.innerText === current_player_symbol
-        ) {
-            box1.classList.add("win");
-            box2.classList.add("win");
-            box3.classList.add("win");
-            is_end = true
-        }
-    }
+	for (let i = 0; i < possible_wins.length; i++) {
+		let box1 = document.getElementById(possible_wins[i][0]);
+		let box2 = document.getElementById(possible_wins[i][1]);
+		let box3 = document.getElementById(possible_wins[i][2]);
+		if (
+			box1.innerText === current_player_symbol &&
+			box2.innerText === current_player_symbol &&
+			box3.innerText === current_player_symbol
+		) {
+			box1.classList.add("win");
+			box2.classList.add("win");
+			box3.classList.add("win");
+			is_end = true;
+		}
+	}
+}
+
+const reset_btn = document.getElementById("reset");
+reset_btn.addEventListener("click", reset);
+function reset() {
+	for (let i = 1; i <= 9; i++) {
+		document.getElementById(i.toString()).innerText = "";
+		document.getElementById(i.toString()).classList.remove("x");
+		document.getElementById(i.toString()).classList.remove("o");
+		document.getElementById(i.toString()).classList.remove("win");
+		is_end = false;
+	}
 }
