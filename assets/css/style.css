@@ -235,6 +235,14 @@ input::placeholder {
     font-size: 24px;
 }
 
+.error-text {
+    color: var(--poppy);
+}
+
+.error {
+    border: 3px solid var(--poppy);
+}
+
 .start-button {
     font-family: "Mali";
     font-size: 24px;

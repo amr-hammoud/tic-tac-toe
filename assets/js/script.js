@@ -5,11 +5,35 @@ let player_x_name;
 let player_o_name;
 
 function startGame(){
-	player_x_name = document.getElementById("player_x").value;
-	player_o_name = document.getElementById("player_o").value;
-	start_modal.classList.add("hidden");
-}
+	let player_x_input = document.getElementById("player_x");
+	let player_x_error = document.getElementById("player_x_error");
+	let player_o_input = document.getElementById("player_o");
+	let player_o_error = document.getElementById("player_o_error");
 
+	player_x_name = player_x_input.value;
+	player_o_name = player_o_input.value;
+
+	if(player_x_name === ""){
+		player_x_error.classList.remove("hidden");
+		player_x_input.classList.add("error");
+	}
+	else{
+		player_x_error.classList.add("hidden");
+		player_x_input.classList.remove("error");
+	}
+	if(player_o_name === ""){
+		player_o_error.classList.remove("hidden");
+		player_o_input.classList.add("error");
+	}
+	else{
+		player_o_error.classList.add("hidden");
+		player_o_input.classList.remove("error");
+	}
+	if(player_x_name !== "" && player_o_name !== ""){
+		start_modal.classList.add("hidden");
+	}
+
+}
 
 const all_squares = document.getElementsByClassName("square");
 let current_player_symbol = "X";
