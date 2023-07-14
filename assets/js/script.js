@@ -1,6 +1,6 @@
 const start_modal = document.getElementById("modal");
 const start_btn = document.getElementById("start");
-start_btn.addEventListener("click",startGame);
+start_btn.addEventListener("click", startGame);
 
 const all_squares = document.getElementsByClassName("square");
 let current_player_symbol = "X";
@@ -16,12 +16,12 @@ let score_o_value = 0;
 
 updateScoreText();
 
-function setupGame(){
+function setupGame() {
 	start_modal.classList.add("hidden");
 	updateScoreText();
 }
 
-function startGame(){
+function startGame() {
 	let player_x_input = document.getElementById("player_x");
 	let player_x_error = document.getElementById("player_x_error");
 	let player_o_input = document.getElementById("player_o");
@@ -30,26 +30,23 @@ function startGame(){
 	player_x_name = player_x_input.value;
 	player_o_name = player_o_input.value;
 
-	if(player_x_name === ""){
+	if (player_x_name === "") {
 		player_x_error.classList.remove("hidden");
 		player_x_input.classList.add("error");
-	}
-	else{
+	} else {
 		player_x_error.classList.add("hidden");
 		player_x_input.classList.remove("error");
 	}
-	if(player_o_name === ""){
+	if (player_o_name === "") {
 		player_o_error.classList.remove("hidden");
 		player_o_input.classList.add("error");
-	}
-	else{
+	} else {
 		player_o_error.classList.add("hidden");
 		player_o_input.classList.remove("error");
 	}
-	if(player_x_name !== "" && player_o_name !== ""){
-		setupGame()
+	if (player_x_name !== "" && player_o_name !== "") {
+		setupGame();
 	}
-
 }
 
 const possible_wins = [
@@ -63,6 +60,18 @@ const possible_wins = [
 	[3, 5, 7],
 ];
 
+let filled_squares = [
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+];
+
 for (let i = 0; i < all_squares.length; i++) {
 	all_squares[i].addEventListener("click", handleClickEvent);
 }
@@ -71,6 +80,7 @@ function handleClickEvent(e) {
 	const square = e.target;
 	if (!is_end && square.innerText === "") {
 		square.innerText = current_player_symbol;
+		filled_squares[square.id - 1] = true;
 		addColor(square);
 		checkWinner();
 		changeTurn();
@@ -87,38 +97,53 @@ function addColor(square) {
 	else square.classList.add("o");
 }
 
+function drawState() {
+	console.log("draw");
+}
+
+function isTrue(s){
+	if(s){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 function checkWinner() {
-	for (let i = 0; i < possible_wins.length; i++) {
-		let box1 = document.getElementById(possible_wins[i][0]);
-		let box2 = document.getElementById(possible_wins[i][1]);
-		let box3 = document.getElementById(possible_wins[i][2]);
-		if (
-			box1.innerText === current_player_symbol &&
-			box2.innerText === current_player_symbol &&
-			box3.innerText === current_player_symbol
-		) {
-			box1.classList.add("win");
-			box2.classList.add("win");
-			box3.classList.add("win");
-			updateScore(current_player_symbol);
-			is_end = true;
+	if (filled_squares.every(isTrue)) {
+		drawState();
+	} else {
+		for (let i = 0; i < possible_wins.length; i++) {
+			let box1 = document.getElementById(possible_wins[i][0]);
+			let box2 = document.getElementById(possible_wins[i][1]);
+			let box3 = document.getElementById(possible_wins[i][2]);
+			if (
+				box1.innerText === current_player_symbol &&
+				box2.innerText === current_player_symbol &&
+				box3.innerText === current_player_symbol
+			) {
+				box1.classList.add("win");
+				box2.classList.add("win");
+				box3.classList.add("win");
+				updateScore(current_player_symbol);
+				is_end = true;
+			}
 		}
 	}
 }
 
 function updateScore(player_symbol) {
-	if(player_symbol === "X"){
+	if (player_symbol === "X") {
 		score_x_value += 1;
 		updateScoreText();
-	}
-	else {
+	} else {
 		score_o_value += 1;
 		updateScoreText();
 	}
-	
 }
 
-function updateScoreText(){
+function updateScoreText() {
 	player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
 	player_o_score.innerText = `${player_o_name} (O): ${score_o_value} points`;
 }
