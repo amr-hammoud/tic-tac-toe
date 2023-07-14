@@ -179,6 +179,18 @@ body {
     border-radius: 10px;
 }
 
+.new-round {
+    font-size: 24px;
+    padding: 15px 10px;
+    font-weight: bold;
+    margin-top: 30px;
+    color: var(--mint-green);
+    background-color: var(--azure);
+    width: 200px;
+    border-radius: 10px;
+    border: 0;
+}
+
 .modal {
     position: absolute;
     width: 100vw;
