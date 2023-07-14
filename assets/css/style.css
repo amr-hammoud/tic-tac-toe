@@ -281,12 +281,23 @@ input::placeholder {
     font-size: 72px;
     font-weight: bold;
     border-radius: 15px;
+    border: 2px solid var(--onyx);
 }
 
 .popup-container .new-round {
     font-size: 24px;
     padding: 15px 10px;
     color: var(--mint-green);
+    background-color: var(--azure);
+    border-radius: 12px;
+    border: 0;
+}
+
+.popup-container .restart {
+    font-size: 24px;
+    padding: 15px 10px;
+    color: var(--mint-green);
     background-color: var(--onyx);
     border-radius: 12px;
+    border: 2px solid var(--onyx);
 }
