@@ -6,15 +6,20 @@ const all_squares = document.getElementsByClassName("square");
 let current_player_symbol = "X";
 let is_end = false;
 
-let player_x_name;
-let player_o_name;
+let player_x_name = "Player X";
+let player_o_name = "Player O";
 
 let player_x_score = document.getElementById("player_x_score");
 let player_o_score = document.getElementById("player_o_score");
 let score_x_value = 0;
 let score_o_value = 0;
 
+updateScoreText();
 
+function setupGame(){
+	start_modal.classList.add("hidden");
+	updateScoreText();
+}
 
 function startGame(){
 	let player_x_input = document.getElementById("player_x");
@@ -47,12 +52,6 @@ function startGame(){
 
 }
 
-function setupGame(){
-	start_modal.classList.add("hidden");
-	player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
-	player_o_score.innerText = `${player_o_name} (O): ${score_o_value} points`;
-}
-
 const possible_wins = [
 	[1, 2, 3],
 	[4, 5, 6],
@@ -72,7 +71,6 @@ function handleClickEvent(e) {
 	const square = e.target;
 	if (!is_end && square.innerText === "") {
 		square.innerText = current_player_symbol;
-		
 		addColor(square);
 		checkWinner();
 		changeTurn();
@@ -111,13 +109,18 @@ function checkWinner() {
 function updateScore(player_symbol) {
 	if(player_symbol === "X"){
 		score_x_value += 1;
-		player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
+		updateScoreText();
 	}
 	else {
 		score_o_value += 1;
-		player_o_score.innerText = `${player_o_name} (X): ${score_o_value} points`;
+		updateScoreText();
 	}
 	
+}
+
+function updateScoreText(){
+	player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
+	player_o_score.innerText = `${player_o_name} (O): ${score_o_value} points`;
 }
 
 const reset_btn = document.getElementById("reset");
