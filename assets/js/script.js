@@ -171,6 +171,9 @@ function updateScoreText() {
 	player_o_score.innerHTML = `<strong>${player_o_name} (O):</strong> ${score_o_value} points`;
 }
 
+const new_round = document.getElementById("new-round");
+new_round.addEventListener("click", reset)
+
 const winner_new_round = document.getElementById("winner-new-round");
 winner_new_round.addEventListener("click", winnerNewRound);
 
