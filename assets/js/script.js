@@ -176,6 +176,7 @@ winner_reset_btn.addEventListener("click", winnerReset);
 
 function winnerReset() {
 	reset();
+	current_player_symbol = "X";
 	resetScore();
 	winner_popup.classList.add("hidden");
 }
