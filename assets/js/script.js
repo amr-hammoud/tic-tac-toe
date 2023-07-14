@@ -127,7 +127,7 @@ function checkWinner() {
 				box3.classList.add("win");
 				updateScore(current_player_symbol);
 				is_end = true;
-				showWinner(current_player_symbol);
+				setTimeout(showWinner,1000,current_player_symbol);
 			}
 		}
 	}
@@ -158,8 +158,8 @@ function showWinner(player_symbol) {
 }
 
 function updateScoreText() {
-	player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
-	player_o_score.innerText = `${player_o_name} (O): ${score_o_value} points`;
+	player_x_score.innerHTML = `<strong>${player_x_name} (X):</strong> ${score_x_value} points`;
+	player_o_score.innerHTML = `<strong>${player_o_name} (O):</strong> ${score_o_value} points`;
 }
 
 const winner_new_round = document.getElementById("winner-new-round");
