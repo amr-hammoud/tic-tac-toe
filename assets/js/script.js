@@ -2,6 +2,10 @@ const start_modal = document.getElementById("modal");
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click",startGame);
 
+const all_squares = document.getElementsByClassName("square");
+let current_player_symbol = "X";
+let is_end = false;
+
 let player_x_name;
 let player_o_name;
 
@@ -49,10 +53,6 @@ function setupGame(){
 	player_o_score.innerText = `${player_o_name} (O): ${score_o_value} points`;
 }
 
-const all_squares = document.getElementsByClassName("square");
-let current_player_symbol = "X";
-let is_end = false;
-
 const possible_wins = [
 	[1, 2, 3],
 	[4, 5, 6],
@@ -72,6 +72,7 @@ function handleClickEvent(e) {
 	const square = e.target;
 	if (!is_end && square.innerText === "") {
 		square.innerText = current_player_symbol;
+		
 		addColor(square);
 		checkWinner();
 		changeTurn();
@@ -101,9 +102,22 @@ function checkWinner() {
 			box1.classList.add("win");
 			box2.classList.add("win");
 			box3.classList.add("win");
+			updateScore(current_player_symbol);
 			is_end = true;
 		}
 	}
+}
+
+function updateScore(player_symbol) {
+	if(player_symbol === "X"){
+		score_x_value += 1;
+		player_x_score.innerText = `${player_x_name} (X): ${score_x_value} points`;
+	}
+	else {
+		score_o_value += 1;
+		player_o_score.innerText = `${player_o_name} (X): ${score_o_value} points`;
+	}
+	
 }
 
 const reset_btn = document.getElementById("reset");
