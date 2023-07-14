@@ -72,6 +72,12 @@ let filled_squares = [
 	false,
 ];
 
+function emptyFilledSquares() {
+	for (let i = 0; i < filled_squares.length; i++) {
+		filled_squares[i] = false;
+	}
+}
+
 for (let i = 0; i < all_squares.length; i++) {
 	all_squares[i].addEventListener("click", handleClickEvent);
 }
@@ -98,7 +104,10 @@ function addColor(square) {
 }
 
 function drawState() {
-	console.log("draw");
+	const winner_text = document.getElementById("winner-text");
+	winner_text.classList.add("hidden");
+	winner_name.innerText = "DRAW!";
+	winner_popup.classList.remove("hidden");
 }
 
 function isTrue(s) {
@@ -111,7 +120,7 @@ function isTrue(s) {
 
 function checkWinner() {
 	if (filled_squares.every(isTrue)) {
-		drawState();
+		setTimeout(drawState,1000);
 	} else {
 		for (let i = 0; i < possible_wins.length; i++) {
 			let box1 = document.getElementById(possible_wins[i][0]);
@@ -189,6 +198,7 @@ function reset() {
 		document.getElementById(i.toString()).classList.remove("x");
 		document.getElementById(i.toString()).classList.remove("o");
 		document.getElementById(i.toString()).classList.remove("win");
+		emptyFilledSquares();
 		is_end = false;
 	}
 }
