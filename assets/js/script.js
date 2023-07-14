@@ -1,8 +1,33 @@
+// Landing Screen
 const start_modal = document.getElementById("modal");
+
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click", startGame);
 
+// In Game
 const all_squares = document.getElementsByClassName("square");
+for (let i = 0; i < all_squares.length; i++) {
+	all_squares[i].addEventListener("click", handleClickEvent);
+}
+
+const new_round = document.getElementById("new-round");
+new_round.addEventListener("click", reset);
+
+const reset_btn = document.getElementById("reset");
+reset_btn.addEventListener("click", reset);
+
+// Winner Popup
+const winner_popup = document.getElementById("winner-popup");
+
+const winner_new_round = document.getElementById("winner-new-round");
+winner_new_round.addEventListener("click", winnerNewRound);
+
+const winner_reset_btn = document.getElementById("winner-restart");
+winner_reset_btn.addEventListener("click", winnerReset);
+
+const winner_name = document.getElementById("winner-name");
+
+// Game Variables
 let current_player_symbol = "X";
 let is_end = false;
 
@@ -14,13 +39,35 @@ let player_o_score = document.getElementById("player_o_score");
 let score_x_value = 0;
 let score_o_value = 0;
 
-updateScoreText();
+const possible_wins = [
+	[1, 2, 3],
+	[4, 5, 6],
+	[7, 8, 9],
+	[1, 4, 7],
+	[2, 5, 8],
+	[3, 6, 9],
+	[1, 5, 9],
+	[3, 5, 7],
+];
+
+let filled_squares = [
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+];
 
 function setupGame() {
 	start_modal.classList.add("hidden");
 	updateScoreText();
 }
 
+// Handle players names input then start game
 function startGame() {
 	let player_x_input = document.getElementById("player_x");
 	let player_x_error = document.getElementById("player_x_error");
@@ -49,39 +96,6 @@ function startGame() {
 	}
 }
 
-const possible_wins = [
-	[1, 2, 3],
-	[4, 5, 6],
-	[7, 8, 9],
-	[1, 4, 7],
-	[2, 5, 8],
-	[3, 6, 9],
-	[1, 5, 9],
-	[3, 5, 7],
-];
-
-let filled_squares = [
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-];
-
-function emptyFilledSquares() {
-	for (let i = 0; i < filled_squares.length; i++) {
-		filled_squares[i] = false;
-	}
-}
-
-for (let i = 0; i < all_squares.length; i++) {
-	all_squares[i].addEventListener("click", handleClickEvent);
-}
-
 function handleClickEvent(e) {
 	const square = e.target;
 	if (!is_end && square.innerText === "") {
@@ -90,6 +104,12 @@ function handleClickEvent(e) {
 		addColor(square);
 		checkWinner();
 		changeTurn();
+	}
+}
+
+function emptyFilledSquares() {
+	for (let i = 0; i < filled_squares.length; i++) {
+		filled_squares[i] = false;
 	}
 }
 
@@ -103,13 +123,7 @@ function addColor(square) {
 	else square.classList.add("o");
 }
 
-function drawState() {
-	const winner_text = document.getElementById("winner-text");
-	winner_text.classList.add("hidden");
-	winner_name.innerText = "DRAW!";
-	winner_popup.classList.remove("hidden");
-}
-
+// Function to be used by the checkWinner function to check draw state
 function isTrue(s) {
 	if (s) {
 		return true;
@@ -120,7 +134,7 @@ function isTrue(s) {
 
 function checkWinner() {
 	if (filled_squares.every(isTrue)) {
-		setTimeout(drawState,1000);
+		setTimeout(drawState, 1000);
 	} else {
 		for (let i = 0; i < possible_wins.length; i++) {
 			let box1 = document.getElementById(possible_wins[i][0]);
@@ -136,10 +150,17 @@ function checkWinner() {
 				box3.classList.add("win");
 				updateScore(current_player_symbol);
 				is_end = true;
-				setTimeout(showWinner,1000,current_player_symbol);
+				setTimeout(showWinner, 1000, current_player_symbol);
 			}
 		}
 	}
+}
+
+function drawState() {
+	const winner_text = document.getElementById("winner-text");
+	winner_text.classList.add("hidden");
+	winner_name.innerText = "DRAW!";
+	winner_popup.classList.remove("hidden");
 }
 
 function updateScore(player_symbol) {
@@ -152,39 +173,32 @@ function updateScore(player_symbol) {
 	}
 }
 
+function updateScoreText() {
+	player_x_score.innerHTML = `<strong>${player_x_name} (X):</strong> ${score_x_value} points`;
+	player_o_score.innerHTML = `<strong>${player_o_name} (O):</strong> ${score_o_value} points`;
+}
 
-const winner_name = document.getElementById("winner-name");
+function resetScore() {
+	score_o_value = 0;
+	score_x_value = 0;
+	updateScoreText();
+}
+
 function showWinner(player_symbol) {
 	let winner;
-	if(player_symbol === "X"){
+	if (player_symbol === "X") {
 		winner = player_x_name;
-	}
-	else{
+	} else {
 		winner = player_o_name;
 	}
 	winner_name.innerText = winner;
 	winner_popup.classList.remove("hidden");
 }
 
-function updateScoreText() {
-	player_x_score.innerHTML = `<strong>${player_x_name} (X):</strong> ${score_x_value} points`;
-	player_o_score.innerHTML = `<strong>${player_o_name} (O):</strong> ${score_o_value} points`;
-}
-
-const new_round = document.getElementById("new-round");
-new_round.addEventListener("click", reset)
-
-const winner_new_round = document.getElementById("winner-new-round");
-winner_new_round.addEventListener("click", winnerNewRound);
-
 function winnerNewRound() {
 	reset();
 	winner_popup.classList.add("hidden");
 }
-
-const winner_popup = document.getElementById("winner-popup");
-const winner_reset_btn = document.getElementById("winner-restart");
-winner_reset_btn.addEventListener("click", winnerReset);
 
 function winnerReset() {
 	reset();
@@ -193,8 +207,6 @@ function winnerReset() {
 	winner_popup.classList.add("hidden");
 }
 
-const reset_btn = document.getElementById("reset");
-reset_btn.addEventListener("click", reset);
 function reset() {
 	for (let i = 1; i <= 9; i++) {
 		document.getElementById(i.toString()).innerText = "";
@@ -204,10 +216,4 @@ function reset() {
 		emptyFilledSquares();
 		is_end = false;
 	}
-}
-
-function resetScore() {
-	score_o_value = 0;
-	score_x_value = 0;
-	updateScoreText();
 }
