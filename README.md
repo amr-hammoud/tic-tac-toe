@@ -1,3 +1,11 @@
-# Tic Tac Toe Game
+# Tic Tac Toe
 
-Game deployed on github pages [here](https://amr-hammoud.github.io/tic-tac-toe/)
+A Tic Tac Toe game built with vanilla JavaScript, HTML and CSS. [Play it on GitHub Pages](https://amr-hammoud.github.io/tic-tac-toe/).
+
+## Stack
+
+- JavaScript, HTML and CSS
+
+## License
+
+[MIT](LICENSE)
